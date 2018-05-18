@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 let config = {
-  entry: "./a.js", //入口，可以是一个字符串，也可以是一个数组或者对象
+  entry: path.resolve(__dirname, "../a.js"), //入口，可以是一个字符串，也可以是一个数组或者对象
   output: {
     filename: "b.js", //打包完成后的文件名
-    path: path.resolve(__dirname, "dist") //打包后的文件夹
+    path: path.resolve(__dirname, "../dist") //打包后的文件夹
   },
   module: {
     rules: [
@@ -52,10 +52,6 @@ let config = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "name"
-    }),
-    new webpack.optimize.UglifyJsPlugin(), //不能压缩ES6的代码，如果有，需要用babel进行转化
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "common.js"
     }),
     new ExtractTextPlugin("style.css")
   ]
